@@ -42,7 +42,7 @@ X_test = sequence.pad_sequences(sequences_test, maxlen=50)
 Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
 
-batch_size = 12
+batch_size = 200
 nb_epoch = 20
 
 #parameters for LSTM network
@@ -60,8 +60,8 @@ nb_lstm_outputs = 50
 #Y_test = np_utils.to_categorical(y_test,nb_classes = nb_classes)
 
 model = Sequential()
-model.add(Embedding(2000, 32, dropout=0.2))
-model.add(LSTM(32, dropout_W=0.2, dropout_U=0.2)) 
+model.add(Embedding(2000, 100, dropout=0.2))
+model.add(LSTM(100, dropout_W=0.2, dropout_U=0.2)) 
 model.add(Dense(5))
 model.add(Activation('softmax'))
 model.summary()
