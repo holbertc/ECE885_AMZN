@@ -21,7 +21,7 @@ filename = 'Amazon_Unlocked_Mobile_125k.csv'
 
 dataset = pd.read_csv(filename, delimiter = ",")
 
-train,test = train_test_split(dataset, test_size = 0.3)
+train,test = train_test_split(dataset, test_size = 0.2)
 
 
 
@@ -36,8 +36,8 @@ tokenizer.fit_on_texts(train['Reviews'])
 sequences_train = tokenizer.texts_to_sequences(train['Reviews'])
 sequences_test = tokenizer.texts_to_sequences(test['Reviews'])
 
-X_train = sequence.pad_sequences(sequences_train, maxlen=50)
-X_test = sequence.pad_sequences(sequences_test, maxlen=50)
+X_train = sequence.pad_sequences(sequences_train, maxlen=40)
+X_test = sequence.pad_sequences(sequences_test, maxlen=40)
 
 Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
@@ -46,7 +46,7 @@ batch_size = 32
 nb_epoch = 20
 
 #parameters for LSTM network
-nb_lstm_outputs = 50
+nb_lstm_outputs = 512
 #nb_time_steps = img_rows
 #dim_input_vector = img_cols
 
@@ -61,7 +61,8 @@ nb_lstm_outputs = 50
 
 model = Sequential()
 model.add(Embedding(2000, 100, dropout=0.2))
-model.add(LSTM(100, dropout_W=0.2, dropout_U=0.2)) 
+model.add(LSTM(nb_lstm_outputs)) 
+model.add(Dropout(0.2))
 model.add(Dense(5))
 model.add(Activation('softmax'))
 model.summary()
