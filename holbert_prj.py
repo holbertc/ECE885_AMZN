@@ -8,13 +8,13 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing.text import Tokenizer
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, LSTMHolbert
+from keras.layers import Dense, Dropout, Activation, LSTM
 from keras.layers.embeddings import Embedding
 from keras.utils import np_utils
 from keras.preprocessing import sequence
 
 #load the Amazon dataset
-filename = 'Amazon_Unlocked_Mobile_new.csv'
+filename = 'Amazon_Unlocked_Mobile_125k.csv'
 
 #dtype1 = np.dtype([('rating', 'f2'),('reviews', 'S10')])
 #dataset = np.loadtxt(filename, delimiter=",", skiprows=1, dtype='S10', comments=None)
@@ -31,13 +31,13 @@ y_test = np.array(test['Rating']-1)
 
 
 # vectorize the text samples into a 2D integer tensor
-tokenizer = Tokenizer(nb_words=200)
+tokenizer = Tokenizer(nb_words=2000)
 tokenizer.fit_on_texts(train['Reviews'])
 sequences_train = tokenizer.texts_to_sequences(train['Reviews'])
 sequences_test = tokenizer.texts_to_sequences(test['Reviews'])
 
-X_train = sequence.pad_sequences(sequences_train, maxlen=15)
-X_test = sequence.pad_sequences(sequences_test, maxlen=15)
+X_train = sequence.pad_sequences(sequences_train, maxlen=50)
+X_test = sequence.pad_sequences(sequences_test, maxlen=50)
 
 Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
@@ -60,8 +60,8 @@ nb_lstm_outputs = 50
 #Y_test = np_utils.to_categorical(y_test,nb_classes = nb_classes)
 
 model = Sequential()
-model.add(Embedding(200, 32, dropout=0.2))
-model.add(LSTMHolbert(32, dropout_W=0.2, dropout_U=0.2)) 
+model.add(Embedding(2000, 32, dropout=0.2))
+model.add(LSTM(32, dropout_W=0.2, dropout_U=0.2)) 
 model.add(Dense(5))
 model.add(Activation('softmax'))
 model.summary()
