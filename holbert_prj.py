@@ -43,10 +43,10 @@ Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
 
 batch_size = 32
-nb_epoch = 30
+nb_epoch = 20
 
 #parameters for LSTM network
-nb_lstm_outputs = 512
+nb_lstm_outputs = 200
 #nb_time_steps = img_rows
 #dim_input_vector = img_cols
 
