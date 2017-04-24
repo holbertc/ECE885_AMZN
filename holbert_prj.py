@@ -8,7 +8,8 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing.text import Tokenizer
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, LSTM3
+from keras.layers import Dense, Dropout, Activation
+from recurrentW import LSTM3
 from keras.layers.embeddings import Embedding
 from keras.utils import np_utils
 from keras.preprocessing import sequence
