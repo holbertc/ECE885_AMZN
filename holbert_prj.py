@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing.text import Tokenizer
 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, LSTM
+from keras.layers import Dense, Dropout, Activation, LSTM3
 from keras.layers.embeddings import Embedding
 from keras.utils import np_utils
 from keras.preprocessing import sequence
@@ -61,7 +61,7 @@ nb_lstm_outputs = 200
 
 model = Sequential()
 model.add(Embedding(2000, 100, dropout=0.2))
-model.add(LSTM(nb_lstm_outputs)) 
+model.add(LSTM3(nb_lstm_outputs)) 
 model.add(Dropout(0.2))
 model.add(Dense(5))
 model.add(Activation('softmax'))
