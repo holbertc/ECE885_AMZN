@@ -14,7 +14,7 @@
 #PBS -N holbert_prj_lstm3
  
 ### change to the working directory where your code is located
-cd /mnt/home/holbertc/ECE885_prj/ECE885_AMZN
+cd /mnt/home/holbertc/ECE885_Prj/ECE885_AMZN
 export PATH=/mnt/research/NN1/anaconda2/bin:$PATH
 ### another example
 ipython holbert_prj_lstm3.py
