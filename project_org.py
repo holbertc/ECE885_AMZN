@@ -31,19 +31,19 @@ y_test = np.array(test['Rating']-1)
 
 
 # vectorize the text samples into a 2D integer tensor
-tokenizer = Tokenizer(nb_words=1000)
+tokenizer = Tokenizer(nb_words=2000)
 tokenizer.fit_on_texts(train['Reviews'])
 sequences_train = tokenizer.texts_to_sequences(train['Reviews'])
 sequences_test = tokenizer.texts_to_sequences(test['Reviews'])
 
-X_train = sequence.pad_sequences(sequences_train, maxlen=15)
-X_test = sequence.pad_sequences(sequences_test, maxlen=15)
+X_train = sequence.pad_sequences(sequences_train, maxlen=5)
+X_test = sequence.pad_sequences(sequences_test, maxlen=5)
 
 Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
 
 batch_size = 32
-nb_epoch = 60
+nb_epoch = 20
 
 #parameters for LSTM network
 nb_lstm_outputs = 200
@@ -60,7 +60,7 @@ nb_lstm_outputs = 200
 #Y_test = np_utils.to_categorical(y_test,nb_classes = nb_classes)
 
 model = Sequential()
-model.add(Embedding(1000, 100, dropout=0.2))
+model.add(Embedding(2000, 100, dropout=0.2))
 model.add(LSTM(nb_lstm_outputs)) 
 model.add(Dropout(0.2))
 model.add(Dense(5))
