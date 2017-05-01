@@ -22,7 +22,7 @@ filename = 'Amazon_Unlocked_Mobile_125k.csv'
 
 dataset = pd.read_csv(filename, delimiter = ",")
 
-train,test = train_test_split(dataset, test_size = 0.7)
+train,test = train_test_split(dataset, test_size = 0.2)
 
 
 
