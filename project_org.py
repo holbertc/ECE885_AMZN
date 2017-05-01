@@ -31,7 +31,7 @@ y_test = np.array(test['Rating']-1)
 
 
 # vectorize the text samples into a 2D integer tensor
-tokenizer = Tokenizer(nb_words=1500)
+tokenizer = Tokenizer(nb_words=1000)
 tokenizer.fit_on_texts(train['Reviews'])
 sequences_train = tokenizer.texts_to_sequences(train['Reviews'])
 sequences_test = tokenizer.texts_to_sequences(test['Reviews'])
