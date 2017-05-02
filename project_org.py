@@ -36,8 +36,8 @@ tokenizer.fit_on_texts(train['Reviews'])
 sequences_train = tokenizer.texts_to_sequences(train['Reviews'])
 sequences_test = tokenizer.texts_to_sequences(test['Reviews'])
 
-X_train = sequence.pad_sequences(sequences_train, maxlen=3)
-X_test = sequence.pad_sequences(sequences_test, maxlen=3)
+X_train = sequence.pad_sequences(sequences_train, maxlen=5)
+X_test = sequence.pad_sequences(sequences_test, maxlen=5)
 
 Y_train = np_utils.to_categorical(y_train, 5)
 Y_test = np_utils.to_categorical(y_test, 5)
